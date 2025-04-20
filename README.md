@@ -45,6 +45,56 @@ Trained an XGBoost classifier on the full customer dataset (combining gallons an
 It suggested ~615 gallons/year as the break-even threshold for cost-effective service.
 Built a Logistic Regression model for the LMP fountain-only customer subset (who only purchase syrup in gallons) – this simpler model was more interpretable and indicated ~350 gallons/year as a suitable cutoff​
 
-Evaluated models primarily by classification accuracy and business criteria. The XGBoost model achieved about 43% accuracy in classifying customers at the 615-gallon threshold, and the logistic model about 46% accuracy at the 350-gallon mark​
+Evaluated models primarily by classification accuracy and business criteria. The XGBoost model achieved about 43% accuracy in classifying customers at the 615-gallon threshold, and the logistic model about 46% accuracy at the 350-gallon mark​.
 While accuracy was modest (due to imbalanced classes and a conservative threshold definition), these models were sufficient to guide a policy change.
 Used a Random Forest model as a supplementary check to identify any misclassified cases and key feature indicators. This helped reveal that roughly 60% of non-LMP customers exhibit usage patterns similar to LMP customers​, suggesting many accounts could be treated as high-potential despite not being in the LMP program.
+Customer Clustering & Profiling: Beyond predictive modeling, we employed clustering to further analyze customer behaviors:
+Performed monthly order clustering using features like monthly volume, growth rates (AGI), product mix, and delivery type. This unsupervised analysis grouped customers into profile clusters (e.g. steady growers, declining volume, seasonal buyers)​
+
+Each cluster was profiled to understand common characteristics such as order frequency and package preferences, supporting more targeted strategies.
+Conducted geographic analysis, creating state-level density maps to visualize where customer growth or decline was concentrated​.
+
+This highlighted regional patterns – for example, certain states had higher concentrations of declining small accounts, indicating where a different service approach might be needed.
+These profiles and cluster insights gave context to the ML model results, ensuring that our recommendations made sense for distinct groups of customers and were not solely driven by aggregate volume metrics.
+## Key Insights
+The analysis yielded several important insights about Swire’s customer base and delivery practices:
+Medium-Volume Customer Patterns: A significant number of customers fall into a "medium" volume range of roughly 150–250 gallons per year, with a median around 201 gallons​
+
+These accounts were historically treated as high-cost deliveries despite relatively low volumes, indicating a large opportunity to migrate them to a cheaper service without much revenue loss.
+Declining Order Trends: There was a noticeable year-over-year drop in average order volume, especially within the first seven months of the second year​
+
+This trend suggests that many customers reduced their purchase volume over time (possibly due to over-servicing or competition), underlining the need for proactive re-segmentation and engagement of at-risk accounts.
+Hidden High-Potential Customers: Through model analysis, we discovered that many non-LMP customers share traits with LMP customers. In fact, roughly 60% of non-LMP accounts exhibit “LMP-like” purchasing behavior (e.g. high growth rates or consistent ordering patterns)​
+
+These customers were not flagged under the old system but represent untapped potential — they could be groomed or upsold to become major accounts if given appropriate attention.
+## Business Recommendations
+Based on the findings, the project proposes several changes to Swire Coca-Cola’s delivery segmentation policy and customer management:
+Dynamic Volume Thresholds: Replace the one-size-fits-all 400-gallon rule with a dynamic threshold model. Start by implementing the new cutoffs — ~615 gallons/year for most customers and 350 gallons/year for fountain-only customers — as criteria for Red Truck service​
+
+These thresholds should be periodically re-evaluated and adjusted as customer behavior shifts, rather than kept static.
+"Brown Truck" Program: Introduce a third-party delivery option (informally termed the Brown Truck Program) for low-volume customers who no longer qualify for Red Truck service​
+Leveraging carriers like FedEx/UPS or postal services can service these accounts more cost-effectively. This offboarding strategy is expected to save on operating costs by avoiding the need for costly in-house deliveries to unprofitable routes​.
+
+while still maintaining reasonable delivery times and customer service levels.
+Automated Whitelist Management: Implement an automated whitelisting system that continuously monitors customer volumes and flags threshold crossings. Much like how e-commerce fulfillment programs (e.g., Amazon FBA/FBM or Walmart WFS) manage inventory and sellers, Swire can automatically onboard or offboard customers to the appropriate delivery program based on real-time data​
+This ensures high-potential customers are quickly identified and retained on premium service, and low-volume customers are promptly moved to third-party delivery when their volumes drop.
+## My Contribution
+I played an equal and active role in this project alongside my team partner. I took the lead on exploratory data analysis (EDA), spending significant time analyzing the original dataset to uncover meaningful trends and guide our modeling approach. I built the initial versions of decision tree and regression models, which served as the foundation for model selection and tuning. Beyond technical work, I helped manage the overall project workflow—ensuring we stayed on track with deadlines, maintained high-quality standards, and collaborated effectively as a team.
+## Challenges Encountered
+Our team faced several challenges throughout the project:
+
+Data Quality and Completeness: The dataset contained missing values and inconsistencies, which required careful cleaning and imputation to prepare it for analysis.
+
+High-Dimensional Feature Space: Working with a large number of variables posed challenges in terms of feature selection, increasing the risk of overfitting and requiring thoughtful dimensionality reduction strategies.
+
+Time Management: Exploring multiple modeling techniques while meeting tight deadlines demanded efficient coordination, clear task delegation, and continuous prioritization of key deliverables
+## Key Learnings
+This project provided valuable hands-on experience in applying data science techniques to solve real-world business problems. Key takeaways include:
+
+End-to-End Data Workflow: I gained a deeper understanding of the entire analytics pipeline—from data cleaning and exploratory analysis to model building and interpretation.
+
+Model Selection and Evaluation: I learned how to compare multiple machine learning models based on both performance metrics and business context, and how to balance complexity with interpretability.
+
+Collaboration and Project Management: Working in a team setting strengthened my communication and coordination skills, especially under time constraints.
+
+Business-Driven Decision Making: I learned how to align technical outputs with strategic business goals, such as optimizing delivery logistics and improving customer segmentation.
